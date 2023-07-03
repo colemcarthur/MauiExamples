@@ -2,7 +2,8 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiTestProject.Controls">
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
@@ -47,18 +48,22 @@
         </Setter>
     </Style>
 
-    <Style 
-        Class="CustomButton"
-        TargetType="Button">
+    <Style TargetType="controls:PanButton">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource White}"/>
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource Gray950}"/>
         <Setter
             Property="WidthRequest"
-            Value="60"/>
+            Value="80"/>
         <Setter
             Property="HeightRequest"
-            Value="60"/>
+            Value="80"/>
         <Setter
             Property="CornerRadius"
-            Value="60"/>
+            Value="40"/>
         <Setter
             Property="FontSize"
             Value="40"/>

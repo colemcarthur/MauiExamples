@@ -8,34 +8,34 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MauiTestProject
-build_property.ProjectDir = C:\Users\crobe\Desktop\MauiTestProject\MauiTestProject\
+build_property.ProjectDir = /Users/colemcarthur/Documents/GitHub/MauiExamples/MauiTestProject/MauiTestProject/
 
-[C:/Users/crobe/Desktop/MauiTestProject/MauiTestProject/App.xaml]
+[/Users/colemcarthur/Documents/GitHub/MauiExamples/MauiTestProject/MauiTestProject/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiTestProject.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/crobe/Desktop/MauiTestProject/MauiTestProject/AppShell.xaml]
+[/Users/colemcarthur/Documents/GitHub/MauiExamples/MauiTestProject/MauiTestProject/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiTestProject.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/crobe/Desktop/MauiTestProject/MauiTestProject/MainPage.xaml]
+[/Users/colemcarthur/Documents/GitHub/MauiExamples/MauiTestProject/MauiTestProject/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiTestProject.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Users/crobe/Desktop/MauiTestProject/MauiTestProject/Resources/Styles/Colors.xaml]
+[/Users/colemcarthur/Documents/GitHub/MauiExamples/MauiTestProject/MauiTestProject/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiTestProject.Resources.Styles.Colors.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
 
-[C:/Users/crobe/Desktop/MauiTestProject/MauiTestProject/Resources/Styles/Styles.xaml]
+[/Users/colemcarthur/Documents/GitHub/MauiExamples/MauiTestProject/MauiTestProject/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiTestProject.Resources.Styles.Styles.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml

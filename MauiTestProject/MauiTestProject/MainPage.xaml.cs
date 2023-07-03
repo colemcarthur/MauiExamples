@@ -4,59 +4,136 @@ namespace MauiTestProject;
 
 public partial class MainPage : ContentPage
 {
-    private int Threshold = 5;
-    private bool ButtonDown;
+    //private readonly int Threshold = 10;
+    //private bool IsButtonPressed;
+    //private bool IsWithinThreshold;
 
     public MainPage()
     {
         InitializeComponent();
     }
 
-    private void ButtonPressed(object sender, EventArgs e)
+    //private void ButtonPressed(object sender, EventArgs e)
+    //{
+    //    Button button = (Button)sender;
+
+    //    if (!IsButtonPressed)
+    //    {
+    //        button.ScaleTo(0.9, 100, Easing.SinInOut);
+    //        IsButtonPressed = true;
+    //    }
+    //}
+
+    //private void ButtonReleased(object sender, EventArgs e)
+    //{
+    //    Button button = (Button)sender;
+    //    button.ScaleTo(1, 100, Easing.SinInOut);
+    //    IsButtonPressed = false;
+    //}
+
+    //private void PanUpdated(object sender, PanUpdatedEventArgs e)
+    //{
+    //    Button button = (Button)sender;
+    //    Point position = new(e.TotalX, e.TotalY);
+
+    //    if (e.StatusType == GestureStatus.Started)
+    //    {
+    //        button.ScaleTo(0.9, 100, Easing.SinInOut);
+    //    }
+    //    else if (e.StatusType == GestureStatus.Canceled || e.StatusType == GestureStatus.Completed)
+    //    {
+    //        if (IsButtonPressed)
+    //        {
+    //            button.ScaleTo(1, 100, Easing.SinInOut);
+    //            IsButtonPressed = false;
+
+    //            if (IsWithinThreshold)
+    //            {
+    //                button.SendClicked();
+    //            }
+    //        }
+
+    //        button.TranslateTo(0, 0);
+    //    }
+
+    //    if (IsButtonPressed)
+    //    {
+    //        double centerX = (position.X) / 4;
+    //        double centerY = (position.Y) / 4;
+
+    //        double distanceSquared = centerX * centerX + centerY * centerY;
+    //        double thresholdSquared = Threshold * Threshold;
+
+    //        if (distanceSquared > thresholdSquared)
+    //        {
+    //            double angle = Math.Atan2(centerY, centerX);
+    //            double thresholdX = Math.Cos(angle) * Threshold;
+    //            double thresholdY = Math.Sin(angle) * Threshold;
+
+    //            centerX = thresholdX;
+    //            centerY = thresholdY;
+    //        }
+
+    //        if (distanceSquared <= thresholdSquared)
+    //            IsWithinThreshold = true;
+    //        else
+    //            IsWithinThreshold = false;
+
+    //        button.TranslationX = centerX;
+    //        button.TranslationY = centerY;
+    //    }
+
+    //    Debug.WriteLine($"{button.TranslationX}, {button.TranslationY}");
+    //}
+
+    private void ButtonClicked(object sender, EventArgs e)
     {
-        Button button = (Button)sender;
-        ButtonDown = true;
-        button.ScaleTo(.9, 100, Easing.SinInOut);
+        DisplayAlert("Notification", "The button was clicked!", "Ok");
     }
 
-    private void ButtonReleased(object sender, EventArgs e)
+    void PanButton_Unfocused(System.Object sender, Microsoft.Maui.Controls.FocusEventArgs e)
     {
-        Button button = (Button)sender;
-        ButtonDown = false;
-        button.ScaleTo(1, 100, Easing.SinInOut);
-
-        button.TranslationX = 0;
-        button.TranslationY = 0;
     }
+    #region Old Concept
 
-    private void Moved(object sender, PointerEventArgs e)
-    {
-        Button button = (Button)sender;
-        Point position = e.GetPosition(button).Value;
+    //private void ButtonReleased(object sender, EventArgs e)
+    //{
+    //    Button button = (Button)sender;
+    //    button.ScaleTo(1, 100, Easing.SinInOut);
 
-        if (ButtonDown)
-        {
-            Task.Delay(20);
-            double centerX = Math.Round((position.X - button.Width / 2) / 4, 0, MidpointRounding.ToZero);
-            double centerY = Math.Round((position.Y - button.Height / 2) / 4, 0, MidpointRounding.ToZero);
+    //    button.TranslationX = 0;
+    //    button.TranslationY = 0;
+    //}
 
-            double distanceSquared = centerX * centerX + centerY * centerY;
-            double thresholdSquared = Threshold * Threshold;
+    //private void Moved(object sender, PointerEventArgs e)
+    //{
+    //    Button button = (Button)sender;
+    //    Point position = e.GetPosition(button).Value;
 
-            if (distanceSquared > thresholdSquared)
-            {
-                double angle = Math.Atan2(centerY, centerX);
-                double thresholdX = Math.Cos(angle) * Threshold;
-                double thresholdY = Math.Sin(angle) * Threshold;
+    //    if (ButtonDown)
+    //    {
+    //        double centerX = Math.Round((position.X - button.Width / 2), 0, MidpointRounding.ToZero);
+    //        double centerY = Math.Round((position.Y - button.Height / 2), 0, MidpointRounding.ToZero);
 
-                centerX = thresholdX;
-                centerY = thresholdY;
-            }
+    //        double distanceSquared = centerX * centerX + centerY * centerY;
+    //        double thresholdSquared = Threshold * Threshold;
 
-            button.TranslationX = centerX;
-            button.TranslationY = centerY;
+    //        if (distanceSquared > thresholdSquared)
+    //        {
+    //            double angle = Math.Atan2(centerY, centerX);
+    //            double thresholdX = Math.Cos(angle) * Threshold;
+    //            double thresholdY = Math.Sin(angle) * Threshold;
 
-            Debug.WriteLine($"{button.TranslationX}, {button.TranslationY}");
-        }
-    }
+    //            centerX = thresholdX;
+    //            centerY = thresholdY;
+    //        }
+
+    //        button.TranslationX = centerX;
+    //        button.TranslationY = centerY;
+
+    //        Debug.WriteLine($"{button.TranslationX}, {button.TranslationY}");
+    //    }
+    //}
+
+    #endregion
 }
