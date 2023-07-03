@@ -1,3 +1,3 @@
-MauiTestProject/bin/
-MauiTestProject/obj/
-MauiTestProject/.vs/
+*/bin/
+*/obj/
+*/.vs/
