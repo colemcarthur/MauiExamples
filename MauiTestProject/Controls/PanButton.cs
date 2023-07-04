@@ -4,7 +4,7 @@ public class PanButton : Button
 {
     private bool isButtonPressed;
     private bool isWithinThreshold;
-    private Color originalColor;
+    private CancellationTokenSource cancellationTokenSource;
 
     public static readonly BindableProperty ThresholdProperty =
     BindableProperty.Create(
@@ -14,13 +14,13 @@ public class PanButton : Button
         defaultValue: 4,
         coerceValue: (bindable, value) => Math.Clamp((int)value, 0, 30));
 
-    //public static readonly BindableProperty SensitivityProperty =
-    //BindableProperty.Create(
-    //    nameof(Sensitivity),
-    //    typeof(double),
-    //    typeof(PanButton),
-    //    defaultValue: 1,
-    //    coerceValue: (bindable, value) => Math.Clamp((double)value, 0.1, 5));
+    public static readonly BindableProperty SensitivityProperty =
+    BindableProperty.Create(
+        nameof(Sensitivity),
+        typeof(double),
+        typeof(PanButton),
+        defaultValue: 1.0,
+        coerceValue: (bindable, value) => Math.Clamp((double)value, 0.01, 5.0));
 
     public int Threshold
     {
@@ -28,11 +28,13 @@ public class PanButton : Button
         set => SetValue(ThresholdProperty, value);
     }
 
-    //public double Sensitivity
-    //{
-    //    get => (double)GetValue(SensitivityProperty);
-    //    set => SetValue(SensitivityProperty, value);
-    //}
+    public double Sensitivity
+    {
+        get => (double)GetValue(SensitivityProperty);
+        set => SetValue(SensitivityProperty, value);
+    }
+
+    public Color OriginalColor;
 
     public PanButton()
     {
@@ -44,12 +46,12 @@ public class PanButton : Button
         Released += ButtonReleased;
     }
 
-    private static Color SetColour(Color originalColour, float darknessFactor = 0.8f)
+    private Color SetColour(float darknessFactor = 0.8f)
     {
-        if (originalColour.Alpha == 0)
-            return originalColour;
+        if (OriginalColor.Alpha == 0)
+            return OriginalColor;
 
-        originalColour.ToHsl(out float hue, out float saturation, out float luminosity);
+        OriginalColor.ToHsl(out float hue, out float saturation, out float luminosity);
         Color darkenedColour = Color.FromHsla(hue, saturation, luminosity * darknessFactor);
         return darkenedColour;
     }
@@ -62,18 +64,56 @@ public class PanButton : Button
         {
             HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
             button.ScaleTo(0.9, 100, Easing.SinInOut);
-            originalColor = button.BackgroundColor;
-            button.BackgroundColor = SetColour(button.BackgroundColor);
+            OriginalColor = button.BackgroundColor;
+            button.BackgroundColor = SetColour();
             isButtonPressed = true;
         }
+
+        Element parentScrollContainer = GetParentScrollView(button);
+
+        if (parentScrollContainer != null)
+        {
+            cancellationTokenSource = new CancellationTokenSource();
+            Task.Delay(500, cancellationTokenSource.Token).ContinueWith(_ =>
+            {
+                if (isButtonPressed)
+                {
+                    Dispatcher.Dispatch(() =>
+                    {
+                        ButtonReleased(button, EventArgs.Empty);
+                    });
+                }
+            });
+        }
+    }
+
+    public static Element GetParentScrollView(Element element)
+    {
+        Element parent = element.Parent;
+
+        while (parent != null)
+        {
+            if (parent is ScrollView || parent is CollectionView)
+            {
+                return parent;
+            }
+
+            parent = parent.Parent;
+        }
+
+        return null;
     }
 
     private void ButtonReleased(object sender, EventArgs e)
     {
         Button button = (Button)sender;
         button.ScaleTo(1, 100, Easing.SinInOut);
-        button.BackgroundColor = originalColor;
         isButtonPressed = false;
+
+        if (OriginalColor != null)
+            button.BackgroundColor = OriginalColor;
+
+        cancellationTokenSource?.Cancel();
     }
 
     private void PanUpdated(object sender, PanUpdatedEventArgs e)
@@ -85,10 +125,9 @@ public class PanButton : Button
         {
             if (isButtonPressed)
             {
-                button.ScaleTo(1, 100, Easing.SinInOut);
-                button.BackgroundColor = originalColor;
-
                 isButtonPressed = false;
+                button.ScaleTo(1, 100, Easing.SinInOut);
+                button.BackgroundColor = OriginalColor;
 
                 if (isWithinThreshold)
                 {
@@ -101,8 +140,8 @@ public class PanButton : Button
 
         if (isButtonPressed)
         {
-            double centerX = position.X;
-            double centerY = position.Y;
+            double centerX = position.X * Sensitivity;
+            double centerY = position.Y * Sensitivity;
 
             double distanceSquared = centerX * centerX + centerY * centerY;
             double thresholdSquared = Threshold * Threshold;
@@ -124,9 +163,8 @@ public class PanButton : Button
 
             button.TranslationX = centerX;
             button.TranslationY = centerY;
+
         }
-
-
     }
 }
 
