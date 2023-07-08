@@ -1,14 +1,12 @@
-﻿using System.Diagnostics;
+﻿namespace MauiTestProject.Views;
 
-namespace MauiTestProject;
-
-public partial class MainPage : ContentPage
+public partial class CustomButtons : ContentPage
 {
     //private readonly int Threshold = 10;
     //private bool IsButtonPressed;
     //private bool IsWithinThreshold;
 
-    public MainPage()
+    public CustomButtons()
     {
         InitializeComponent();
     }
@@ -91,9 +89,6 @@ public partial class MainPage : ContentPage
         DisplayAlert("Notification", "The button was clicked!", "Ok");
     }
 
-    void PanButton_Unfocused(System.Object sender, Microsoft.Maui.Controls.FocusEventArgs e)
-    {
-    }
     #region Old Concept
 
     //private void ButtonReleased(object sender, EventArgs e)

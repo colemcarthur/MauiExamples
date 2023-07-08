@@ -2,7 +2,7 @@
 <ContentPage 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MauiTestProject.MainPage"
+    x:Class="MauiTestProject.Views.CustomButtons"
     Shell.NavBarIsVisible="False"
     xmlns:controls="clr-namespace:MauiTestProject.Controls"
     BackgroundColor="{StaticResource Gray100}">

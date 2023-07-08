@@ -64,4 +64,9 @@
 	<ItemGroup>
 	  <Folder Include="Controls\" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="MVVM\Views\CustomButtons.xaml.cs">
+	    <DependentUpon>CustomButtons.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
 </Project>
