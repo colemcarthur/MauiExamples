@@ -62,11 +62,13 @@
 	  <None Remove="Controls\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Controls\" />
+	  <Compile Update="MVVM\Views\CustomButtonsPage.xaml.cs">
+	    <DependentUpon>CustomButtonsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Update="MVVM\Views\CustomButtons.xaml.cs">
-	    <DependentUpon>CustomButtons.xaml</DependentUpon>
-	  </Compile>
+	  <MauiXaml Update="MVVM\Views\CustomVerticalStackLayoutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

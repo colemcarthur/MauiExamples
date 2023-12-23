@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiTestProject.MVVM.Views.CustomVerticalStackLayoutPage"
+    Title="CustomVerticalStackLayoutPage"
+    Shell.NavBarIsVisible="False"
+    xmlns:controls="clr-namespace:MauiTestProject.Controls"
+    BackgroundColor="{StaticResource Gray100}">
+    <Grid 
+        RowDefinitions="120,*"
+        Padding="20,60">
+        <FlexLayout JustifyContent="SpaceEvenly">
+            <controls:PanButton 
+                Text="Add"
+                FontSize="20"
+                FlexLayout.Basis="33.3%"
+                WidthRequest="-1"
+                HeightRequest="50"
+                CornerRadius="6"
+                BackgroundColor="#8BC34A"
+                Clicked="AddClicked"/>
+            <controls:PanButton 
+                Text="Delete"
+                FontSize="20"
+                FlexLayout.Basis="33.3%"
+                WidthRequest="-1"
+                HeightRequest="50"
+                CornerRadius="6"
+                BackgroundColor="#E74C3C"
+                Clicked="DeleteClicked"/>
+        </FlexLayout>
+        <ScrollView Grid.Row="1">
+            <controls:AdvancedVerticalStackLayout
+                HeightRequest="0"
+                WidthRequest="400"
+                BackgroundColor="{StaticResource Gray600}"
+                x:Name="avsl"
+                HorizontalOptions="Center"/>
+        </ScrollView>
+    </Grid>
+    
+</ContentPage>
